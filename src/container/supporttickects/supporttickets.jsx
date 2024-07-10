@@ -50,11 +50,16 @@ const SupportTickets = () => {
                                         <div className="box-body">
                                             {idx.message}
                                         </div>
-                                    
+
                                         <div className="box-footer">
                                             <div className="flex justify-between">
-                                                <div className="font-semibold text-[.875rem]">28,Nov 2022</div>
-                                                <div className="font-semibold text-success ">Assistant Professor</div>
+                                                <div className="font-semibold text-[.875rem]">
+                                                    {new Date(idx.created_at).toLocaleDateString('en-GB', {
+                                                        day: '2-digit',
+                                                        month: 'short',
+                                                        year: 'numeric'
+                                                    })}
+                                                </div>
                                             </div>
                                         </div>
 
