@@ -1,12 +1,10 @@
 
 
 export const MENUITEMS = [
-  {
-    menutitle: 'MAIN',
-  },
+  
       {
         icon: (<i className="side-menu__icon bx bx-home"></i>),
-        type: 'sub',
+        type: 'link',
         Name: '',
         active: false,
         selected: false,
@@ -15,26 +13,16 @@ export const MENUITEMS = [
         badge: '',
         badgetxt: '',
         class: 'badge !bg-warning/10 !text-warning !py-[0.25rem] !px-[0.45rem] !text-[0.75em] ms-2',
-        children: [
-          { path: `${import.meta.env.BASE_URL}dashboards/crm`, type: 'link', active: false, selected: false, dirchange: false, title: 'CRM' },
-        ]
-      },
-      {
+
+         path: `${import.meta.env.BASE_URL}dashboards`,
         
-        title: "Transaction",
-        path: `${import.meta.env.BASE_URL}transaction`,
-        icon: (<i className="bx bx-store-alt side-menu__icon"></i>),
-        type: "link",
-        selected: false, 
-        dirchange: false,
-        active: false,
-       
       },
+      
       {
         
         title: "Admins",
         path: `${import.meta.env.BASE_URL}admins`,
-        icon: (<i className="bx bx-store-alt side-menu__icon"></i>),
+        icon: (<i className="ti ti-users side-menu__icon"></i>),
         type: "link",
         selected: false, 
         dirchange: false,
@@ -45,7 +33,7 @@ export const MENUITEMS = [
         
         title: "Agents",
         path: `${import.meta.env.BASE_URL}agents`,
-        icon: (<i className="bx bx-store-alt side-menu__icon"></i>),
+        icon: (<i className="ti ti-users side-menu__icon"></i>),
         type: "link",
         selected: false, 
         dirchange: false,
@@ -53,8 +41,29 @@ export const MENUITEMS = [
       },
       {
         
+        title: "Transaction",
+        path: `${import.meta.env.BASE_URL}transaction`,
+        icon: (<i className="ti ti-wallet side-menu__icon"></i>),
+        type: "link",
+        selected: false, 
+        dirchange: false,
+        active: false,
+       
+      },
+      {
+        
         title: "Commissions",
         path: `${import.meta.env.BASE_URL}commissions`,
+        icon: (<i className="ti ti-briefcase side-menu__icon"></i>),
+        type: "link",
+        selected: false, 
+        dirchange: false,
+        active: false,
+      },
+      {
+        
+        title: "SupportTickets",
+        path: `${import.meta.env.BASE_URL}support-tickets`,
         icon: (<i className="bx bx-grid-alt side-menu__icon"></i>),
         type: "link",
         selected: false, 

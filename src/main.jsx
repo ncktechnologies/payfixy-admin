@@ -6,22 +6,29 @@ import Crm from './container/dashboards/crm/crm.jsx'
 import './index.scss'
 import ScrollToTop from './components/ui/scrolltotop.jsx'
 import Agents from './container/agents/agents.jsx'
-import Transaction from './container/transaction/transcaction.jsx'
+import Transaction from './container/transaction/transaction.jsx'
 import Commissions from './container/commissions/commissions.jsx'
 import Admins from './container/admins/admins.jsx'
+import Login from './firebase/login.jsx'
+import Auth from './firebase/auth.jsx'
+import SupportTickets from './container/supporttickects/supporttickets.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.Fragment>
     <BrowserRouter>
       <React.Suspense>
       <ScrollToTop/>
         <Routes>
+        <Route path={`${import.meta.env.BASE_URL}`} element={<Auth/>}>
+            <Route index element={<Login />} />
+            <Route path={`${import.meta.env.BASE_URL}firebase/login`} element={<Login />} />
+          </Route>
           <Route path={`${import.meta.env.BASE_URL}`} element={<App />}>
-            <Route index  element={<Crm />} />
-            <Route path={`${import.meta.env.BASE_URL}dashboards/crm`}  element={<Crm />} />
+            <Route path={`${import.meta.env.BASE_URL}dashboards`}  element={<Crm />} />
             <Route path={`${import.meta.env.BASE_URL}admins`}  element={<Admins />} />
             <Route path={`${import.meta.env.BASE_URL}agents`}  element={<Agents />} />
             <Route path={`${import.meta.env.BASE_URL}transaction`}  element={<Transaction />} />
             <Route path={`${import.meta.env.BASE_URL}commissions`}  element={<Commissions />} />
+            <Route path={`${import.meta.env.BASE_URL}support-tickets`}  element={<SupportTickets />} />
           </Route>
           
         </Routes>

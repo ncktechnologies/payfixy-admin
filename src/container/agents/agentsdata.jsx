@@ -1,4 +1,13 @@
+// import { useQuery } from "@tanstack/react-query";
+// import { AgentService } from "../../services/agents.service";
 
+// export const useAgents = () => {
+//   const { data, isLoading } = useQuery({
+//     queryKey: ["get-agents"],
+//     queryFn: () => AgentService.getAllAgents(),
+//   });
+//   return { data, isLoading };
+// };
 
 export const Companydata= [
     { id: '1', name: 'Lisa Convay', time: '24, Jul 2023 - 4:45PM', score: '258', mail: 'sprukotechnologies2981@gmail.com', cell: '1678-28993-223', badge: 'Corporate', text1: 'Spruko Technologies', text2: 'Information Technology', color: 'primary/10', class: 'primary' },

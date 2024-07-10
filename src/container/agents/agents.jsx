@@ -1,32 +1,48 @@
-import React, {  Fragment, useRef, useState } from 'react';
+import React, { Fragment, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Pageheader from '../../components/common/pageheader/pageheader';
-import { Companydata, Selectdata1, Selectdata2 } from './agentsdata';
-import Select from 'react-select';
+import { useQuery } from "@tanstack/react-query";
+import { AgentService } from "../../services/agents.service";
+
 
 
 
 
 const Agents = () => {
-    const [manageInvoiceData, setManageInvoiceData] = useState([...Companydata]);
-    const handleDelete = (idToRemove) => {
-        const updatedInvoiceData = manageInvoiceData.filter((item) => item.id !== idToRemove);
-        setManageInvoiceData(updatedInvoiceData);
-    };
+    
+    const [AgentsData, setAgentsData] = useState([]);
 
+    const { data, isLoading, error } = useQuery({
+        queryKey: ["get-agents"],
+        queryFn: () => AgentService.getAllAgents(),
+        onSuccess: () => {
+            setAgentsData(data);
+        },
+        onError: (error) => {
+            console.error("Error fetching data:", error.response.data);
+        }
+    });
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error loading data : {error.response}</div>;
+
+    const handleDelete = (idToRemove) => {
+        const updatedInvoiceData = AgentsData.filter((item) => item.id !== idToRemove);
+        setAgentsData(updatedInvoiceData);
+    };
+    
     return (
         <Fragment>
-            <Pageheader currentpage="Agents"  />
+            <Pageheader currentpage="Agents" activepage="Pages" mainpage="Agents" />
             <div className="grid grid-cols-12 gap-6">
                 <div className="xl:col-span-12 col-span-12">
                     <div className="box custom-box">
                         <div className="box-header justify-between">
                             <div className="box-title">
-                                Companies <span className="badge bg-light text-defaulttextcolor rounded-full ms-1 text-[0.75rem] align-middle">14</span>
+                                Agents <span className="badge bg-light text-defaulttextcolor rounded-full ms-1 text-[0.75rem] align-middle">{AgentsData.length + 1}</span>
                             </div>
                             <div className="flex flex-wrap gap-2">
                                 <Link to="#" className="hs-dropdown-toggle ti-btn ti-btn-primary-full !py-1 !px-2 !text-[0.75rem]" data-hs-overlay="#todo-compose">
-                                    <i className="ri-add-line font-semibold align-middle"></i>Add Company
+                                    <i className="ri-add-line font-semibold align-middle"></i>Add Agents
                                 </Link>
                                 <button type="button" className="ti-btn ti-btn-success !py-1 !px-2 !text-[0.75rem] btn-wave">Export As CSV</button>
                                 <div className="hs-dropdown ti-dropdown">
@@ -49,67 +65,53 @@ const Agents = () => {
                                             <th scope="col">
                                                 <input className="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..." />
                                             </th>
-                                            <th scope="col" className="text-start">Company Name</th>
+                                            <th scope="col" className="text-start">Agent Name</th>
                                             <th scope="col" className="text-start">Email</th>
                                             <th scope="col" className="text-start">Phone</th>
-                                            <th scope="col" className="text-start">Industry</th>
-                                            <th scope="col" className="text-start">Company Size</th>
-                                            <th scope="col" className="text-start">Key Contact</th>
-                                            <th scope="col" className="text-start">Total Deals</th>
+                                            <th scope="col" className="text-start">Status</th>
+                                            {/* <th scope="col" className="text-start">Verification</th> */}
                                             <th scope="col" className="text-start">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {manageInvoiceData.map((idx) => (
-                                            <tr className="border border-defaultborder crm-contact" key={Math.random()}>
+                                        {data.map((dats) => (
+
+                                            <tr className="border border-defaultborder crm-contact" key={dats.id}>
                                                 <td>
                                                     <input className="form-check-input" type="checkbox" id="checkboxNoLabel1" value="" aria-label="..." />
                                                 </td>
+
                                                 <td>
-                                                    <div className="flex items-center gap-2">
-                                                        <div className="leading-none">
-                                                            {/* <span className="avatar avatar-sm p-1 bg-light avatar-rounded">
-                                                                <img src={idx.src2} alt="" />
-                                                            </span> */}
-                                                        </div>
-                                                        <div>
-                                                            <Link to="#offcanvasExample" aria-controls="offcanvasExample">{idx.text1}</Link>
-                                                        </div>
+                                                    <div className='flex items-center gap-x-2'>
+                                                    <div className="leading-none">
+                                                        <span className="avatar avatar-sm p-1 bg-light avatar-rounded">
+                                                            <img src={dats.profile_photo} alt="" />
+                                                        </span>
+                                                    </div>
+                                                        <span className="block mb-1">{dats.firstname}</span>
+                                                        <span className="block mb-1">{dats.lastname}</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className='flex gap-x-2'>
+                                                        <span className="block mb-1"><i className="ri-mail-line me-2 align-middle text-[.875rem] text-[#8c9097] dark:text-white/50 inline-flex"></i>{dats.email}</span>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div>
-                                                        <span className="block mb-1"><i className="ri-mail-line me-2 align-middle text-[.875rem] text-[#8c9097] dark:text-white/50 inline-flex"></i>{idx.mail}</span>
+                                                        <span className="block"><i className="ri-phone-line me-2 align-middle text-[.875rem] text-[#8c9097] dark:text-white/50 inline-flex"></i>{dats.phone_number}</span>
                                                     </div>
                                                 </td>
-                                                <td>
-                                                    <div>
-                                                        <span className="block"><i className="ri-phone-line me-2 align-middle text-[.875rem] text-[#8c9097] dark:text-white/50 inline-flex"></i>{idx.cell}</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    {idx.text2}
-                                                </td>
+                                                
                                                 <td>
                                                     <div className="flex items-center flex-wrap gap-1">
-                                                        <span className={`badge bg-${idx.color} text-${idx.class}`}>{idx.badge}</span>
+                                                        <span className={`badge `}>{dats.status}</span>
                                                     </div>
                                                 </td>
-                                                <td>
-                                                    <div className="flex items-center gap-2">
-                                                        <div className="leading-none">
-                                                            {/* <span className="avatar avatar-rounded avatar-sm">
-                                                                <img src={idx.src1} alt="" />
-                                                            </span> */}
-                                                        </div>
-                                                        <div>
-                                                            <span className="block font-semibold">{idx.name}</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
+
+                                                {/* <td>
                                                     {idx.score}
-                                                </td>
+                                                </td> */}
                                                 <td>
                                                     <div className='space-x-2 rtl:space-x-reverse'>
                                                         <button aria-label="button" type="button" className="ti-btn ti-btn-sm ti-btn-warning" data-hs-overlay="#hs-overlay-contacts"><i className="ri-eye-line"></i></button>
@@ -272,77 +274,7 @@ const Agents = () => {
                     </div>
                 </div>
             </div>
-            <div id="todo-compose" className="hs-overlay hidden ti-modal">
-                <div className="hs-overlay-open:mt-7 ti-modal-box mt-0 ease-out">
-                    <div className="ti-modal-content">
-                        <div className="ti-modal-header">
-                            <h6 className="modal-title text-[1rem] font-semibold text-defaulttextcolor" id="mail-ComposeLabel">Add Company</h6>
-                            <button type="button" className="hs-dropdown-toggle !text-[1rem] !font-semibold !text-defaulttextcolor" data-hs-overlay="#todo-compose">
-                                <span className="sr-only">Close</span>
-                                <i className="ri-close-line"></i>
-                            </button>
-                        </div>
-                        <div className="ti-modal-body px-4">
-                            <div className="grid grid-cols-12 gap-4">
-                                {/* <div className="xl:col-span-12 col-span-12">
-                                    <div className="mb-0 text-center">
-                                        <span className="avatar avatar-xxl avatar-rounded">
-                                            <img src={selectedImage || ''} alt="" id="profile-img" />
-                                            <span className="badge rounded-pill bg-primary avatar-badge" onClick={openFileInput}>
-                                                <input type="file" name="photo" className="absolute w-full h-full opacity-0"
-                                                    id="profile-change" ref={fileInputRef}
-                                                    onChange={handleImageChange}
-                                                    style={{ display: 'none' }} />
-                                                <i className="fe fe-camera text-[.625rem]"></i>
-                                            </span>
-                                        </span>
-                                    </div>
-                                </div> */}
-                                <div className="xl:col-span-6 col-span-12">
-                                    <label htmlFor="company-name" className="form-label">Company Name</label>
-                                    <input type="text" className="form-control" id="company-name" placeholder="Contact Name" />
-                                </div>
-                                <div className="xl:col-span-6 col-span-12">
-                                    <label htmlFor="company-lead-score" className="form-label">Total Deals</label>
-                                    <input type="number" className="form-control" id="company-lead-score" placeholder="Total Deals" />
-                                </div>
-                                <div className="xl:col-span-12 col-span-12">
-                                    <label htmlFor="company-mail" className="form-label">Email</label>
-                                    <input type="email" className="form-control" id="company-mail" placeholder="Enter Email" />
-                                </div>
-                                <div className="xl:col-span-12 col-span-12">
-                                    <label htmlFor="company-phone" className="form-label">Phone No</label>
-                                    <input type="tel" className="form-control" id="company-phone" placeholder="Enter Phone Number" />
-                                </div>
-                                <div className="xl:col-span-12 col-span-12">
-                                    <label htmlFor="key-contact" className="form-label">Key Contact</label>
-                                    <input type="text" className="form-control" id="key-contact" placeholder="Contact Name" />
-                                </div>
-                                <div className="xl:col-span-12 col-span-12">
-                                    <label className="form-label">Industry</label>
-                                    <Select name="colors" options={Selectdata2} className="basic-multi-select"
-                                        menuPlacement='auto' classNamePrefix="Select2" defaultValue={[Selectdata2[0]]}
-                                    />
-                                </div>
-                                <div className="xl:col-span-12 col-span-12">
-                                    <label className="form-label">Company Size</label>
-                                    <Select name="colors" options={Selectdata1} className="basic-multi-select"
-                                        menuPlacement='auto' classNamePrefix="Select2" defaultValue={[Selectdata1[0]]}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="ti-modal-footer">
-                            <button type="button"
-                                className="hs-dropdown-toggle ti-btn  ti-btn-light align-middle"
-                                data-hs-overlay="#todo-compose">
-                                Cancel
-                            </button>
-                            <button type="button" className="ti-btn bg-primary text-white !font-medium">Create Contact</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </Fragment>
     );
 }

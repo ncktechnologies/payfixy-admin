@@ -9,8 +9,19 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import store from '../redux/store';
 import { Provider } from 'react-redux';
 import { Outlet } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 import Tabtotop from '../components/common/tabtotop/tabtotop';
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 0,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function App() {
   const [MyclassName, setMyClass] = useState("");
@@ -36,6 +47,8 @@ function App() {
   return (
     <Fragment>
       <Loader/>
+    <QueryClientProvider client={queryClient}>
+
       <Provider store={store}>
         <HelmetProvider>
           <Helmet
@@ -67,6 +80,8 @@ function App() {
           <Tabtotop/>
         </HelmetProvider>
       </Provider>
+    </QueryClientProvider>
+
     </Fragment>
   );
 }

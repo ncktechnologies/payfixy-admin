@@ -3,7 +3,7 @@ import Pageheader from "../../../components/common/pageheader/pageheader";
 const AdminList = () => {
     return ( 
         <>
-        <Pageheader currentpage="Agents" />
+        <Pageheader currentpage="Admins" activepage="Pages" mainpage="Admins" />
         </>
      );
 }
