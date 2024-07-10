@@ -1,34 +1,12 @@
-import {  Fragment, useEffect, useState } from 'react';
-import Modalsearch from '../modalsearch/modalsearch';
-import product1 from "../../../assets/images/ecommerce/jpg/1.jpg";
-import product3 from "../../../assets/images/ecommerce/jpg/3.jpg";
-import product5 from "../../../assets/images/ecommerce/jpg/5.jpg";
-import product4 from "../../../assets/images/ecommerce/jpg/4.jpg";
-import product6 from "../../../assets/images/ecommerce/jpg/6.jpg";
+import { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import store from '../../../redux/store';
 import { connect } from 'react-redux';
 import { ThemeChanger } from "../../../redux/action";
-import us from "../../../assets/images/flags/us_flag.jpg";
-import spain from "../../../assets/images/flags/spain_flag.jpg";
-import french from "../../../assets/images/flags/french_flag.jpg";
-import germany from "../../../assets/images/flags/germany_flag.jpg";
-import italy from "../../../assets/images/flags/italy_flag.jpg";
-import russia from "../../../assets/images/flags/russia_flag.jpg";
-import figma from "../../../assets/images/apps/figma.png";
-import powerpoint from "../../../assets/images/apps/microsoft-powerpoint.png";
-import word from "../../../assets/images/apps/microsoft-word.png";
-import calender from "../../../assets/images/apps/calender.png";
-import sketch from "../../../assets/images/apps/sketch.png";
-import googledocs from "../../../assets/images/apps/google-docs.png";
-import google from "../../../assets/images/apps/google.png";
-import translate from "../../../assets/images/apps/translate.png";
-import googlesheets from "../../../assets/images/apps/google-sheets.png";
-import face9 from "../../../assets/images/faces/9.jpg";
 import desktoplogo from "../../../assets/images/brand-logos/desktop-logo.png";
 import togglelogo from "../../../assets/images/brand-logos/toggle-logo.png";
-import desktopdark from "../../../assets/images/brand-logos/desktop-dark.png";
-import toggledark from "../../../assets/images/brand-logos/toggle-dark.png";
+import desktopdark from "../../../assets/images/brand-logos/pay_logo-dark.svg";
+import toggledark from "../../../assets/images/brand-logos/toggle-white.png";
 import desktopwhite from "../../../assets/images/brand-logos/desktop-white.png";
 import togglewhite from "../../../assets/images/brand-logos/toggle-white.png";
 import SimpleBar from 'simplebar-react';
@@ -66,62 +44,8 @@ const Header = ({ local_varaiable, ThemeChanger }) => {
   const handleToggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
   };
-  const cartProduct = [
-    {
-      id: 1,
-      src: product1,
-      name: 'SomeThing Phone',
-      price: '$1,299.00',
-      color: 'Metallic Blue',
-      text: '6gb Ram',
-      class: ''
-    },
-    {
-      id: 2,
-      src: product3,
-      name: 'Stop Watch',
-      price: '$179.29',
-      color: 'Analog',
-      text: 'Free shipping',
-      class: 'font-[600] py-[0.25rem] px-[0.45rem] rounded-[0.25rem] bg-pink/10 text-pink text-[0.625rem]',
-    },
-    {
-      id: 3,
-      src: product5,
-      name: 'Photo Frame',
-      price: '$29.00',
-      color: 'Decorative',
-      text: '',
-      class: '',
-    },
-    {
-      id: 4,
-      src: product4,
-      name: 'Kikon Camera',
-      price: '$4,999.00',
-      color: 'Black',
-      text: '50MM',
-      class: '',
-    },
-    {
-      id: 5,
-      src: product6,
-      name: 'Canvas Shoes',
-      price: '$129.00',
-      color: 'Gray',
-      text: 'Sports',
-      class: ''
-    },
-  ];
-  const [cartItems, setCartItems] = useState([...cartProduct]);
-  const [cartItemCount, setCartItemCount] = useState(cartProduct.length);
+ 
 
-  const handleRemove = (e, itemId) => {
-    e.stopPropagation(); // Prevents the event from reaching the button click event
-    const updatedCart = cartItems.filter((item) => item.id !== itemId);
-    setCartItems(updatedCart);
-    setCartItemCount(updatedCart.length);
-  };
   const initialNotifications = [];
 
   const [notifications, setNotifications] = useState([...initialNotifications]);
@@ -292,7 +216,7 @@ const Header = ({ local_varaiable, ThemeChanger }) => {
     ThemeChanger({
       ...local_varaiable,
       "class": local_varaiable.class == 'dark' ? 'light' : 'dark',
-      "dataHeaderStyles":local_varaiable.class == 'dark' ? 'light' : 'dark',
+      "dataHeaderStyles": local_varaiable.class == 'dark' ? 'light' : 'dark',
       "dataMenuStyles": local_varaiable.dataNavLayout == 'horizontal' ? local_varaiable.class == 'dark' ? 'light' : 'dark' : "dark"
 
     });
@@ -347,108 +271,8 @@ const Header = ({ local_varaiable, ThemeChanger }) => {
               </div>
             </div>
 
-
-
             <div className="header-content-right">
 
-              <div className="header-element py-[1rem] md:px-[0.65rem] px-2 header-search">
-                <button aria-label="button" type="button" data-hs-overlay="#search-modal"
-                  className="inline-flex flex-shrink-0 justify-center items-center gap-2  rounded-full font-medium focus:ring-offset-0 focus:ring-offset-white transition-all text-xs dark:bg-bgdark dark:hover:bg-black/20 dark:text-[#8c9097] dark:text-white/50 dark:hover:text-white dark:focus:ring-white/10 dark:focus:ring-offset-white/10">
-                  <i className="bx bx-search-alt-2 header-link-icon"></i>
-                </button>
-              </div>
-
-              <div className="header-element py-[1rem] md:px-[0.65rem] px-2  header-country hs-dropdown ti-dropdown  hidden sm:block [--placement:bottom-left]">
-                <button id="dropdown-flag" type="button"
-                  className="hs-dropdown-toggle ti-dropdown-toggle !p-0 flex-shrink-0  !border-0 !rounded-full !shadow-none">
-                  <img src={us} alt="flag-img" className="h-[1.25rem] w-[1.25rem] rounded-full" />
-                </button>
-
-                <div className="hs-dropdown-menu ti-dropdown-menu min-w-[10rem] hidden !-mt-3" aria-labelledby="dropdown-flag">
-                  <div className="ti-dropdown-divider divide-y divide-gray-200 dark:divide-white/10">
-                    <div className="py-2 first:pt-0 last:pb-0">
-                      <div className="ti-dropdown-item !p-[0.65rem] ">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
-                          <div className="h-[1.375rem] flex items-center w-[1.375rem] rounded-full">
-                            <img src={us} alt="flag-img"
-                              className="h-[1rem] w-[1rem] rounded-full" />
-                          </div>
-                          <div>
-                            <p className="!text-[0.8125rem] font-medium">
-                              English
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
-                          <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
-                            <img src={spain} alt="flag-img"
-                              className="h-[1rem] w-[1rem] rounded-full" />
-                          </div>
-                          <div>
-                            <p className="!text-[0.8125rem] font-medium">
-                              Spanish
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
-                          <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
-                            <img src={french} alt="flag-img"
-                              className="h-[1rem] w-[1rem] rounded-full" />
-                          </div>
-                          <div>
-                            <p className="!text-[0.8125rem] font-medium">
-                              French
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
-                          <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
-                            <img src={germany} alt="flag-img"
-                              className="h-[1rem] w-[1rem] rounded-full" />
-                          </div>
-                          <div>
-                            <p className="!text-[0.8125rem] font-medium">
-                              German
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
-                          <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
-                            <img src={italy} alt="flag-img"
-                              className="h-[1rem] w-[1rem] rounded-full" />
-                          </div>
-                          <div>
-                            <p className="!text-[0.8125rem] font-medium">
-                              Italian
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
-                          <div className="h-[1.375rem] w-[1.375rem] flex items-center  rounded-sm">
-                            <img src={russia} alt="flag-img"
-                              className="h-[1rem] w-[1rem] rounded-full" />
-                          </div>
-                          <div>
-                            <p className="!text-[0.8125rem] font-medium">
-                              Russian
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div className="header-element header-theme-mode hidden !items-center sm:block !py-[1rem] md:!px-[0.65rem] px-2" onClick={() => ToggleDark()}>
                 <Link aria-label="anchor"
                   className="hs-dark-mode-active:hidden flex hs-dark-mode group flex-shrink-0 justify-center items-center gap-2  rounded-full font-medium transition-all text-xs dark:bg-bgdark dark:hover:bg-black/20 dark:text-[#8c9097] dark:text-white/50 dark:hover:text-white dark:focus:ring-white/10 dark:focus:ring-offset-white/10"
@@ -462,7 +286,7 @@ const Header = ({ local_varaiable, ThemeChanger }) => {
                   <i className="bx bx-sun header-link-icon"></i>
                 </Link>
               </div>
-              
+
               <div className="header-element py-[1rem] md:px-[0.65rem] px-2 notifications-dropdown header-notification hs-dropdown ti-dropdown !hidden md:!block [--placement:bottom-right] rtl:[--placement:bottom-left]">
                 <button id="dropdown-notification" type="button"
                   className="hs-dropdown-toggle relative ti-dropdown-toggle !p-0 !border-0 flex-shrink-0  !rounded-full !shadow-none align-middle text-xs">
@@ -528,7 +352,7 @@ const Header = ({ local_varaiable, ThemeChanger }) => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="header-element header-fullscreen py-[1rem] md:px-[0.65rem] px-2">
 
                 <Link to="#" aria-label="anchor" onClick={toggleFullScreen}
@@ -544,10 +368,10 @@ const Header = ({ local_varaiable, ThemeChanger }) => {
 
                 <button id="dropdown-profile" type="button"
                   className="hs-dropdown-toggle ti-dropdown-toggle !gap-2 !p-0 flex-shrink-0 sm:me-2 me-0 !rounded-full !shadow-none text-xs align-middle !border-0 !shadow-transparent ">
-                  <img className="inline-block rounded-full " src={face9} width="32" height="32" alt="Image Description" />
+                  <i className="ti ti-user-circle text-[1.125rem] opacity-[0.7]"></i>
                 </button>
                 <div className="md:block hidden dropdown-profile cursor-pointer">
-                  <p className="font-semibold mb-0 leading-none text-[#536485] text-[0.813rem] ">Json Taylor</p>
+                  <p className="font-semibold mb-0 leading-none text-[#536485] text-[0.813rem] ">Jpro</p>
                 </div>
                 <div
                   className="hs-dropdown-menu ti-dropdown-menu !-mt-3 border-0 w-[11rem] !p-0 border-defaultborder hidden main-header-dropdown  pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end"
@@ -561,7 +385,7 @@ const Header = ({ local_varaiable, ThemeChanger }) => {
                     </li>
                     <li><Link className="w-full ti-dropdown-item !text-[0.8125rem] !gap-x-0 !p-[0.65rem] !inline-flex" to="#"><i
                       className="ti ti-adjustments-horizontal text-[1.125rem] me-2 opacity-[0.7]"></i>Settings</Link></li>
-                    
+
                     <li><Link className="w-full ti-dropdown-item !text-[0.8125rem] !p-[0.65rem] !gap-x-0 !inline-flex" to="#"><i
                       className="ti ti-logout text-[1.125rem] me-2 opacity-[0.7]"></i>Log Out</Link></li>
                   </ul>
@@ -578,7 +402,6 @@ const Header = ({ local_varaiable, ThemeChanger }) => {
           </div>
         </nav>
       </header>
-      <Modalsearch />
     </Fragment>
   );
 }

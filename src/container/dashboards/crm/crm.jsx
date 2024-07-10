@@ -1,8 +1,6 @@
 import { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Conversionratio, Dealsstatistics, Profit, Profitearned, Revenueanalytics, Sourcedata, Totalcustomers, Totaldeals, Totalrevenue } from './crmdata';
-import face10 from "../../../assets/images/faces/10.jpg";
-import face12 from "../../../assets/images/faces/12.jpg";
+import { Sourcedata } from './crmdata';
 import { DashboardWidgetsServices } from '../../../services/desktopwidgets.service';
 import { useQuery } from '@tanstack/react-query';
 
