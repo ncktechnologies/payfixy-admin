@@ -4,6 +4,7 @@ import Pageheader from '../../components/common/pageheader/pageheader';
 import { AdminService } from '../../services/admin.service';
 import { useQuery } from '@tanstack/react-query';
 import Select from 'react-select';
+import { format } from 'date-fns';
 
 
 const Admins = () => {
@@ -84,11 +85,10 @@ const Admins = () => {
                                             <th scope="col">
                                                 <input className="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..." />
                                             </th>
-                                            <th scope="col" className="text-start">Username</th>
-                                            <th scope="col" className="text-start">Role</th>
-                                            {/* <th scope="col" className="text-start">Status</th> */}
-                                            {/* <th scope="col" className="text-start">Verification</th> */}
-                                            <th scope="col" className="text-start">Actions</th>
+                                            <th scope="col" className="text-start text-lg">Username</th>
+                                            <th scope="col" className="text-start text-lg">Role</th>
+                                            <th scope="col" className="text-start text-lg">Created At</th>
+                                            <th scope="col" className="text-start text-lg">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -108,13 +108,11 @@ const Admins = () => {
                                                 
                                                 <td>
                                                     <div className="flex items-center flex-wrap gap-1">
-                                                        <span className={`badge `}>{dats.role}</span>
+                                                        <span className="">{dats.role}</span>
                                                     </div>
                                                 </td>
 
-                                                {/* <td>
-                                                    {idx.score}
-                                                </td> */}
+                                                <td>{format(new Date(dats.created_at), 'dd MMMM yyyy')}</td>
                                                 <td>
                                                     <div className='space-x-2 rtl:space-x-reverse'>
                                                         <button aria-label="button" type="button" className="ti-btn ti-btn-sm ti-btn-warning" data-hs-overlay="#hs-overlay-contacts"><i className="ri-eye-line"></i></button>
