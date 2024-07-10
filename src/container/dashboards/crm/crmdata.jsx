@@ -678,10 +678,10 @@ export class Sourcedata extends Component{
         super(props);
 
         this.state = {
-            series: [32, 27, 25, 16],
+            payments: [32, 27, 25, 16],
             options: {
 
-                labels: ["My First Dataset"],
+                // labels: ["My First Dataset"],
                 chart: {
                     events: {
                         mounted: (chart) => {
@@ -699,7 +699,7 @@ export class Sourcedata extends Component{
                     show: false,
                 },
                 stroke: {
-                    show: true,
+                    show: false,
                     curve: 'smooth',
                     lineCap: 'round',
                     colors: ["#fff"],
@@ -715,13 +715,13 @@ export class Sourcedata extends Component{
                             labels: {
                                 show: false,
                                 name: {
-                                    show: true,
+                                    show: false,
                                     fontSize: '20px',
                                     color: '#495057',
                                     offsetY: -4
                                 },
                                 value: {
-                                    show: true,
+                                    show: false,
                                     fontSize: '18px',
                                     color: undefined,
                                     offsetY: 8,
@@ -743,7 +743,7 @@ export class Sourcedata extends Component{
     render() {
         return (
             <div>
-                <ReactApexChart options={this.state.options} series={this.state.series} type="donut" height={260} />
+                <ReactApexChart options={this.state.options} series={this.state.payments} type="donut" height={260} />
             </div>
 
         );
