@@ -73,7 +73,7 @@ const Login = ({ ThemeChanger }) => {
                                     <p className="h5 font-semibold mb-2 text-center">Sign In</p>
 
 
-                                    <p className="mb-4  dark:text-white/50 opacity-[0.7] font-normal text-center">Welcome back !</p>
+                                    {/* <p className="mb-4  dark:text-white/50 opacity-[0.7] font-normal text-center">Welcome back !</p> */}
 
                                     {err && <div className="alert-danger px-4 py-3 shadow-md mb-2" role="alert">
                                         <div className="flex">
@@ -91,7 +91,7 @@ const Login = ({ ThemeChanger }) => {
                                                 onChange={changeHandler} />
                                         </div>
                                         <div className="xl:col-span-12 col-span-12 mb-2">
-                                            <label htmlFor="signin-password" className="form-label text-default block">Password<Link to={`${import.meta.env.BASE_URL}authentication/resetpassword/resetbasic`} className="float-end text-danger">Forget password ?</Link></label>
+                                            <label htmlFor="signin-password" className="form-label text-default block">Password</label>
                                             <div className="input-group">
                                                 <input name="password" type='password' className="form-control form-control-lg !rounded-s-md"
 
@@ -99,14 +99,7 @@ const Login = ({ ThemeChanger }) => {
                                                     onChange={changeHandler} />
                                                 <button onClick={() => setpasswordshow1(!passwordshow1)} aria-label="button" className="ti-btn ti-btn-light !rounded-s-none !mb-0" type="button" id="button-addon2"><i className={`${passwordshow1 ? 'ri-eye-line' : 'ri-eye-off-line'} align-middle`}></i></button>
                                             </div>
-                                            <div className="mt-2">
-                                                <div className="form-check !ps-0">
-                                                    <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
-                                                    <label className="form-check-label text-[#8c9097] dark:text-white/50 font-normal" htmlFor="defaultCheck1">
-                                                        Remember password ?
-                                                    </label>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                         
                                         {!isPending &&

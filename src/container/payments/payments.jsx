@@ -38,20 +38,7 @@ const Payments = () => {
                                 <div>
                                     <input className="form-control form-control-sm" type="text" placeholder="Search Here" aria-label=".form-control-sm example" />
                                 </div>
-                                <div className="ti-dropdown hs-dropdown">
-                                    <Link to="#" className="ti-btn ti-btn-primary-full !py-1 !px-2 !text-[0.75rem] waves-effect waves-light" aria-expanded="false">
-                                        Sort By<i className="ri-arrow-down-s-line align-middle ms-1 inline-block"></i>
-                                    </Link>
-                                    <ul className="hs-dropdown-menu ti-dropdown-menu hidden" role="menu">
-                                        <li><Link className="ti-dropdown-item" to="#">New</Link></li>
-                                        <li><Link className="ti-dropdown-item" to="#">This Week</Link></li>
-                                        <li><Link className="ti-dropdown-item" to="#">This Month</Link></li>
-                                        <li><Link className="ti-dropdown-item" to="#">This Year</Link></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <button type="button" className="ti-btn ti-btn-secondary-full !py-1 !px-2 !text-[0.75rem] btn-wave">View All</button>
-                                </div>
+                                
                             </div>
                         </div>
                         <div className="box-body">

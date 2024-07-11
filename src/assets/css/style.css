@@ -3903,7 +3903,7 @@ label {
 }
 
 .app-sidebar {
-  @apply w-[15rem] h-full !bg-[#D9C5C5] dark:bg-bodybg border-e border-e-white/10 fixed top-0 start-0 font-Montserrat z-[49] transition-all ease-linear duration-[0.05s];
+  @apply w-[15rem] h-full !bg-[#A51D21] dark:bg-bodybg border-e border-e-white/10 fixed top-0 start-0 font-Montserrat z-[49] transition-all ease-linear duration-[0.05s];
 }
 .app-sidebar .main-sidebar-header {
   @apply h-[3.75rem] w-[15rem] fixed flex  dark:bg-bodybg z-[9] items-center justify-center py-[0.813rem] px-5 border-b border-b-white/10 border-e border-e-white/10 transition-all ease-linear duration-[0.05s];
@@ -3930,15 +3930,15 @@ label {
   @apply p-3 relative flex items-center no-underline text-[0.78rem] text-[#a3aed1] dark:text-[#8f9bb3] font-medium rounded-md whitespace-nowrap;
 }
 .app-sidebar .side-menu__item.active, .app-sidebar .side-menu__item:hover {
-  @apply text-white bg-[#F5F5DC] before:border-white;
+  @apply !text-white bg-white before:border-white;
 }
 .app-sidebar .side-menu__item.active .side-menu__label,
 .app-sidebar .side-menu__item.active .side-menu__angle, .app-sidebar .side-menu__item:hover .side-menu__label,
 .app-sidebar .side-menu__item:hover .side-menu__angle {
-  @apply text-black;
+  @apply text-[#A51D21];
 }
 .app-sidebar .side-menu__item.active .side-menu__icon, .app-sidebar .side-menu__item:hover .side-menu__icon {
-  @apply fill-[#2D2D2D] text-[#2D2D2D];
+  @apply fill-[#A51D21] text-[#A51D21];
 }
 .app-sidebar .side-menu__item.active {
   @apply font-semibold;
@@ -3968,13 +3968,13 @@ label {
   @apply p-0 ps-6 relative;
 }
 .app-sidebar .side-menu__label {
-  @apply whitespace-nowrap text-[#2D2D2D] dark:text-[#8f9bb3] relative text-[0.85rem] leading-none align-middle;
+  @apply whitespace-nowrap text-[#ffffff] dark:text-[#8f9bb3] relative text-[0.85rem] leading-none align-middle;
 }
 .app-sidebar .side-menu__label .badge {
   @apply p-2 rounded-sm;
 }
 .app-sidebar .side-menu__icon {
-  @apply me-2.5 w-[1.15rem] h-[1.15rem] text-[1.15rem] text-center text-[#2D2D2D] fill-[#2D2D2D] dark:text-[#8f9bb3] rounded-md;
+  @apply me-2.5 w-[1.15rem] h-[1.15rem] text-[1.15rem] text-center text-white fill-white dark:text-[#8f9bb3] rounded-md;
 }
 .app-sidebar .side-menu__angle {
   @apply origin-center absolute end-3 text-[0.85rem] text-[#a3aed1] dark:text-[#8f9bb3] transition-all ease-linear duration-[0.05s];
@@ -6307,9 +6307,12 @@ label {
   [data-menu-styles=dark][class=dark][data-nav-style=menu-click][data-toggled=menu-click-closed]:not([data-nav-layout=horizontal]) .app-sidebar .slide.has-sub .slide-menu, [data-menu-styles=dark][class=dark][data-nav-style=icon-click][data-toggled=icon-click-closed]:not([data-nav-layout=horizontal]) .app-sidebar .slide.has-sub .slide-menu, [data-menu-styles=dark][class=dark][data-nav-style=menu-hover][data-toggled=menu-hover-closed]:not([data-nav-layout=horizontal]) .app-sidebar .slide.has-sub .slide-menu, [data-menu-styles=dark][class=dark][data-nav-style=icon-hover][data-toggled=icon-hover-closed]:not([data-nav-layout=horizontal]) .app-sidebar .slide.has-sub .slide-menu, [data-menu-styles=dark][class=dark][data-vertical-style=doublemenu]:not([data-nav-layout=horizontal]) .app-sidebar .slide.has-sub .slide-menu {
     @apply bg-bodybg !important;
   }
-  /* [data-menu-styles=dark][data-nav-style=menu-click][data-toggled=menu-click-closed]:not([data-nav-layout=horizontal]) .app-sidebar .main-sidebar-header, [data-menu-styles=dark][data-nav-style=menu-hover][data-toggled=menu-hover-closed]:not([data-nav-layout=horizontal]) .app-sidebar .main-sidebar-header, [data-menu-styles=dark][data-nav-style=icon-click][data-toggled=icon-click-closed]:not([data-nav-layout=horizontal]) .app-sidebar .main-sidebar-header, [data-menu-styles=dark][data-nav-style=icon-hover][data-toggled=icon-hover-closed]:not([data-nav-layout=horizontal]) .app-sidebar .main-sidebar-header, [data-menu-styles=dark][data-vertical-style=doublemenu]:not([data-nav-layout=horizontal]) .app-sidebar .main-sidebar-header {
+  .app-sidebar .main-sidebar-header{
     @apply bg-[#ffffff];
-  } */
+  }
+  [data-menu-styles=dark][data-nav-style=menu-click][data-toggled=menu-click-closed]:not([data-nav-layout=horizontal]) .app-sidebar .main-sidebar-header, [data-menu-styles=dark][data-nav-style=menu-hover][data-toggled=menu-hover-closed]:not([data-nav-layout=horizontal]) .app-sidebar .main-sidebar-header, [data-menu-styles=dark][data-nav-style=icon-click][data-toggled=icon-click-closed]:not([data-nav-layout=horizontal]) .app-sidebar .main-sidebar-header, [data-menu-styles=dark][data-nav-style=icon-hover][data-toggled=icon-hover-closed]:not([data-nav-layout=horizontal]) .app-sidebar .main-sidebar-header, [data-menu-styles=dark][data-vertical-style=doublemenu]:not([data-nav-layout=horizontal]) .app-sidebar .main-sidebar-header {
+    @apply bg-[#ffffff];
+  }
   [data-menu-styles=dark][data-nav-style=menu-click][data-toggled=menu-click-closed]:not([data-nav-layout=horizontal]) .app-sidebar .header-logo.toggle-logo, [data-menu-styles=dark][data-nav-style=menu-hover][data-toggled=menu-hover-closed]:not([data-nav-layout=horizontal]) .app-sidebar .header-logo.toggle-logo, [data-menu-styles=dark][data-nav-style=icon-click][data-toggled=icon-click-closed]:not([data-nav-layout=horizontal]) .app-sidebar .header-logo.toggle-logo, [data-menu-styles=dark][data-nav-style=icon-hover][data-toggled=icon-hover-closed]:not([data-nav-layout=horizontal]) .app-sidebar .header-logo.toggle-logo, [data-menu-styles=dark][data-vertical-style=doublemenu]:not([data-nav-layout=horizontal]) .app-sidebar .header-logo.toggle-logo {
     @apply lg:hidden !important;
   }
@@ -6685,17 +6688,17 @@ label {
   @apply text-[#536485];
 }
 [data-menu-styles=light] .app-sidebar .side-menu__item:hover {
-  @apply text-[#536485] bg-[#f3f6f8] !important;
+  @apply text-[#536485] bg-white !important;
 }
 [data-menu-styles=light] .app-sidebar .side-menu__item:hover .side-menu__label,
 [data-menu-styles=light] .app-sidebar .side-menu__item:hover .side-menu__angle {
   @apply text-[#536485];
 }
 [data-menu-styles=light] .app-sidebar .side-menu__item:hover .side-menu__icon {
-  @apply text-[#536485] fill-[#536485] !important;
+  @apply text-white fill-white !important;
 }
 [data-menu-styles=light] .app-sidebar .side-menu__item.active {
-  @apply font-semibold bg-[#f3f6f8];
+  @apply font-semibold bg-[#A51D21];
 }
 [data-menu-styles=light] .app-sidebar .slide-menu.child1 .side-menu__item, [data-menu-styles=light] .app-sidebar .slide-menu.child2 .side-menu__item, [data-menu-styles=light] .app-sidebar .slide-menu.child3 .side-menu__item {
   @apply text-[#536485] before:border-[#536485]/80;

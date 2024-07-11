@@ -360,18 +360,8 @@ const Header = ({ local_varaiable, ThemeChanger }) => {
                 </div>
               </div>
 
-              <div className="header-element header-fullscreen py-[1rem] md:px-[0.65rem] px-2">
-
-                <Link to="#" aria-label="anchor" onClick={toggleFullScreen}
-                  className="inline-flex flex-shrink-0 justify-center items-center gap-2  !rounded-full font-medium dark:hover:bg-black/20 dark:text-[#8c9097] dark:text-white/50 dark:hover:text-white dark:focus:ring-white/10 dark:focus:ring-offset-white/10">
-                  {fullScreen ? (
-                    <i className="bx bx-exit-fullscreen full-screen-close header-link-icon"></i>
-                  ) : (
-                    <i className="bx bx-fullscreen full-screen-open header-link-icon"></i>
-                  )}
-                </Link>
-              </div>
-              <div className="header-element md:!px-[0.65rem] px-2 hs-dropdown !items-center ti-dropdown [--placement:bottom-left]">
+              
+              {/* <div className="header-element md:!px-[0.65rem] px-2 hs-dropdown !items-center ti-dropdown [--placement:bottom-left]">
 
                 <button id="dropdown-profile" type="button"
                   className="hs-dropdown-toggle ti-dropdown-toggle !gap-2 !p-0 flex-shrink-0 sm:me-2 me-0 !rounded-full !shadow-none text-xs align-middle !border-0 !shadow-transparent ">
@@ -397,14 +387,8 @@ const Header = ({ local_varaiable, ThemeChanger }) => {
                       className="ti ti-logout text-[1.125rem] me-2 opacity-[0.7]"></i>Log Out </li>
                   </ul>
                 </div>
-              </div>
-              <div className="header-element md:px-[0.48rem]">
-                <button aria-label="button" type="button"
-                  className="hs-dropdown-toggle switcher-icon inline-flex flex-shrink-0 justify-center items-center gap-2  rounded-full font-medium  align-middle transition-all text-xs dark:text-[#8c9097] dark:text-white/50 dark:hover:text-white dark:focus:ring-white/10 dark:focus:ring-offset-white/10"
-                  data-hs-overlay="#hs-overlay-switcher">
-                  <i className="bx bx-cog header-link-icon animate-spin-slow"></i>
-                </button>
-              </div>
+              </div> */}
+              
             </div>
           </div>
         </nav>

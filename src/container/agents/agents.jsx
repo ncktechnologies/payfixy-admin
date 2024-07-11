@@ -44,17 +44,7 @@ const Agents = () => {
                                 <Link to="#" className="hs-dropdown-toggle ti-btn ti-btn-primary-full !py-1 !px-2 !text-[0.75rem]" data-hs-overlay="#todo-compose">
                                     <i className="ri-add-line font-semibold align-middle"></i>Add Agents
                                 </Link>
-                                <button type="button" className="ti-btn ti-btn-success !py-1 !px-2 !text-[0.75rem] btn-wave">Export As CSV</button>
-                                <div className="hs-dropdown ti-dropdown">
-                                    <Link to="#" className="ti-btn ti-btn-light !py-1 !px-2 !text-[0.75rem] btn-wave" aria-expanded="false">
-                                        Sort By<i className="ri-arrow-down-s-line align-middle ms-1 inline-block"></i>
-                                    </Link>
-                                    <ul className="hs-dropdown-menu ti-dropdown-menu hidden" role="menu">
-                                        <li><Link className="ti-dropdown-item" to="#">Newest</Link></li>
-                                        <li><Link className="ti-dropdown-item" to="#">Date Added</Link></li>
-                                        <li><Link className="ti-dropdown-item" to="#">A - Z</Link></li>
-                                    </ul>
-                                </div>
+                                
                             </div>
                         </div>
                         <div className="box-body !p-0">
@@ -63,7 +53,6 @@ const Agents = () => {
                                     <thead>
                                         <tr>
                                             <th scope="col">
-                                                <input className="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..." />
                                             </th>
                                             <th scope="col" className="text-start">Agent Name</th>
                                             <th scope="col" className="text-start">Email</th>
@@ -78,7 +67,6 @@ const Agents = () => {
 
                                             <tr className="border border-defaultborder crm-contact" key={dats.id}>
                                                 <td>
-                                                    <input className="form-check-input" type="checkbox" id="checkboxNoLabel1" value="" aria-label="..." />
                                                 </td>
 
                                                 <td>

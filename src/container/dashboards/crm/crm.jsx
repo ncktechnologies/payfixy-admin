@@ -9,6 +9,7 @@ const Crm = () => {
   // for User search function
   const [Data, setData] = useState(null);
 
+const formatCurrency = (value) => `₦${value?.toLocaleString()}`;
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["get-dashboard"],
@@ -77,7 +78,7 @@ const Crm = () => {
                           <div className="flex items-center justify-between flex-wrap">
                             <div>
                               <p className="text-[#8c9097] dark:text-white/50 text-[0.813rem] mb-0">Wallet Balance</p>
-                              <h4 className="font-semibold  text-[1.5rem] !mb-2 ">{data?.total_wallet_balance}</h4>
+                              <h4 className="font-semibold  text-[1.5rem] !mb-2 ">{formatCurrency(data?.total_wallet_balance)}</h4>
                             </div>
                             <div id="crm-total-customers">
                               {/* <Totalcustomers/> */}
@@ -109,7 +110,7 @@ const Crm = () => {
                           <div className="flex items-center justify-between flex-wrap">
                             <div>
                               <p className="text-[#8c9097] dark:text-white/50 text-[0.813rem] mb-0">Total Commission</p>
-                              <h4 className="font-semibold  text-[1.5rem] !mb-2 ">{data?.total_commission}</h4>
+                              <h4 className="font-semibold  text-[1.5rem] !mb-2 ">{formatCurrency(data?.total_commission)}</h4>
                             </div>
                             <div id="crm-total-customers">
                               {/* <Totalcustomers/> */}
@@ -299,7 +300,7 @@ const Crm = () => {
                     <Sourcedata />
                     <div className="lead-source-value ">
                       <span className="block text-[0.875rem] ">Total Payment</span>
-                      <span className="block text-[1.5625rem] font-bold">{Data}</span>
+                      <span className="block text-[1.5625rem] font-bold">{formatCurrency(Data)}</span>
                     </div>
                   </div>
                 </div>
@@ -308,7 +309,7 @@ const Crm = () => {
                     <div className="!ps-4 p-[0.95rem] text-center border-e border-dashed dark:border-defaultborder/10">
                       <span className="text-[#8c9097] dark:text-white/50 text-[0.75rem] mb-1 crm-lead-legend mobile inline-block">Day
                       </span>
-                      <div><span className="text-[1rem]  font-semibold">{data?.total_payments_day}</span>
+                      <div><span className="text-[1rem]  font-semibold">{formatCurrency(data?.total_payments_day)}</span>
                       </div>
                     </div>
                   </div>
@@ -316,14 +317,14 @@ const Crm = () => {
                     <div className="p-[0.95rem] text-center border-e border-dashed dark:border-defaultborder/10">
                       <span className="text-[#8c9097] dark:text-white/50 text-[0.75rem] mb-1 crm-lead-legend desktop inline-block">Week
                       </span>
-                      <div><span className="text-[1rem]  font-semibold">{data?.total_payments_week}</span></div>
+                      <div><span className="text-[1rem]  font-semibold">{formatCurrency(data?.total_payments_week)}</span></div>
                     </div>
                   </div>
                   <div className="col !p-0">
                     <div className="p-[0.95rem] text-center border-e border-dashed dark:border-defaultborder/10">
                       <span className="text-[#8c9097] dark:text-white/50 text-[0.75rem] mb-1 crm-lead-legend laptop inline-block">Month
                       </span>
-                      <div><span className="text-[1rem]  font-semibold">{data?.total_payments_month}</span>
+                      <div><span className="text-[1rem]  font-semibold">{formatCurrency(data?.total_payments_month)}</span>
                       </div>
                     </div>
                   </div>
@@ -331,7 +332,7 @@ const Crm = () => {
                     <div className="!pe-4 p-[0.95rem] text-center">
                       <span className="text-[#8c9097] dark:text-white/50 text-[0.75rem] mb-1 crm-lead-legend tablet inline-block">TOtal
                       </span>
-                      <div><span className="text-[1rem]  font-semibold">{data?.total_payments_total}</span></div>
+                      <div><span className="text-[1rem]  font-semibold">{formatCurrency(data?.total_payments_total)}</span></div>
                     </div>
                   </div>
                 </div>
