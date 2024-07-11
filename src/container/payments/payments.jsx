@@ -61,9 +61,7 @@ const Payments = () => {
                                         {data.map((idx) => (
                                             <tr className="border border-defaultborder transaction" key={idx.id}>
                                                 <td>
-                                                    <span className="avatar avatar-sm avatar-rounded bg-light">
-                                                        <i className={`ti ti-arrow-narrow-${idx.class} text-${idx.color1} font-semibold text-[1rem]`}></i>
-                                                    </span>
+                                                    
                                                 </td>
                                                 <td>
                                                     <div className="flex items-center gap-2">
