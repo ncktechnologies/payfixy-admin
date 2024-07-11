@@ -22,8 +22,8 @@ const SupportTickets = () => {
         <>
             <Fragment>
                 <Pageheader currentpage="Support Tickets" activepage="Pages" mainpage="Support Ticket" />
-                <div className="container">
-                    <div className="max-w-6xl mx-auto ">
+                <div className="">
+                    <div className="  max-w-6xl">
                         <div className="grid grid-cols-12 sm:gap-x-6 gap-y-4 ">
                             {data.map((idx) => (
 
@@ -35,16 +35,7 @@ const SupportTickets = () => {
                                                     <div className="text-[.9375rem] font-semibold">{idx.full_name}</div>
                                                     <p className="mb-0 text-[#8c9097] dark:text-white/50 text-[.6875rem]">{idx.phone}</p>
                                                 </div>
-                                                <div className="hs-dropdown ti-dropdown ms-auto my-auto">
-                                                    <Link aria-label="anchor" to="#" className="ti-btn ti-btn-icon ti-btn-sm ti-btn-light !mb-0">
-                                                        <i className="fe fe-more-vertical"></i>
-                                                    </Link>
-                                                    <ul className="hs-dropdown-menu ti-dropdown-menu hidden">
-                                                        <li><Link className="ti-dropdown-item" to="#">Week</Link></li>
-                                                        <li><Link className="ti-dropdown-item" to="#">Month</Link></li>
-                                                        <li><Link className="ti-dropdown-item" to="#">Year</Link></li>
-                                                    </ul>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                         <div className="box-body">
@@ -67,7 +58,7 @@ const SupportTickets = () => {
                                 </div>
                             ))}
                         </div>
-                        <nav aria-label="Page navigation">
+                        {/* <nav aria-label="Page navigation">
                             <ul className="ti-pagination  mb-4 justify-end">
                                 <li className="page-item disabled"><Link className="page-link px-3 py-[0.375rem]" to="#">Previous</Link></li>
                                 <li className="page-item"><Link className="page-link px-3 py-[0.375rem]" to="#">1</Link></li>
@@ -75,7 +66,7 @@ const SupportTickets = () => {
                                 <li className="page-item"><Link className="page-link px-3 py-[0.375rem]" to="#">3</Link></li>
                                 <li className="page-item"><Link className="page-link px-3 py-[0.375rem]" to="#">Next</Link></li>
                             </ul>
-                        </nav>
+                        </nav> */}
                     </div>
 
                 </div>
