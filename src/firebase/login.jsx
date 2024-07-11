@@ -29,19 +29,7 @@ const Login = ({ ThemeChanger }) => {
         const path = `${import.meta.env.BASE_URL}dashboards`;
         navigate(path);
     };
-    const Login1 = () => {
-
-        if (data.email == "adminreact@gmail.com" && data.password == "1234567890") {
-            routeChange();
-        }
-        else {
-            setError("The Auction details did not Match");
-            setData({
-                "username": "adminreact@gmail.com",
-                "password": "1234567890",
-            });
-        }
-    };
+   
      const { mutate, isPending } = useMutation({
         mutationFn: async (data) => await authService.login(data),
         onSuccess: (data) => {

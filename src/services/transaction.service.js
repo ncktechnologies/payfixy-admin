@@ -18,6 +18,15 @@ class Transaction {
           throw new Error(error);
         }
     }
+    async getAllPayments() {
+        try {
+          const response = await Axios.get(`/admin/payments`);
+          // console.log(response)
+          return response;
+        } catch (error) {
+          throw new Error(error);
+        }
+    }
     
 }
 export const TransactionService = new Transaction();

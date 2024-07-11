@@ -12,6 +12,7 @@ import Admins from './container/admins/admins.jsx'
 import Login from './firebase/login.jsx'
 import Auth from './firebase/auth.jsx'
 import SupportTickets from './container/supporttickects/supporttickets.jsx'
+import Payments from './container/payments/payments.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.Fragment>
     <BrowserRouter>
@@ -29,6 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path={`${import.meta.env.BASE_URL}transaction`}  element={<Transaction />} />
             <Route path={`${import.meta.env.BASE_URL}commissions`}  element={<Commissions />} />
             <Route path={`${import.meta.env.BASE_URL}support-tickets`}  element={<SupportTickets />} />
+            <Route path={`${import.meta.env.BASE_URL}payments`}  element={<Payments />} />
           </Route>
           
         </Routes>

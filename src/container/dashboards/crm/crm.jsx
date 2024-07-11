@@ -20,6 +20,11 @@ const Crm = () => {
       console.error("Error fetching data:", error.response.data);
     }
   });
+  useEffect(() => {
+    if (data) {
+      setData(data?.total_payments_total);
+    }
+  }, [data]);
 
   const updateData = (payment) => {
 
@@ -43,13 +48,13 @@ const Crm = () => {
       <div className="md:flex block items-center justify-between my-[1.5rem] page-header-breadcrumb">
         <div>
           <p className="font-semibold text-[1.125rem] text-defaulttextcolor dark:text-defaulttextcolor/70 !mb-0 ">Welcome back, Json Taylor !</p>
-          <p className="font-normal text-[#8c9097] dark:text-white/50 text-[0.813rem]">Track your sales activity, leads and deals here.</p>
+          <p className="font-normal text-[#8c9097] dark:text-white/50 text-[0.813rem]">Track your sales activities here.</p>
         </div>
         <div className="btn-list md:mt-0 mt-2">
-          <button type="button"
+          {/* <button type="button"
             className="ti-btn bg-primary text-white btn-wave !font-medium !me-[0.375rem] !ms-0 !text-[0.85rem] !rounded-[0.35rem] !py-[0.51rem] !px-[0.86rem] shadow-none mb-0">
             <i className="ri-filter-3-fill  inline-block"></i>Filters
-          </button>
+          </button> */}
 
         </div>
       </div>
@@ -112,7 +117,7 @@ const Crm = () => {
                           </div>
                           <div className="flex items-center justify-between !mt-1">
                             <div>
-                              <Link className="text-cyan font-[500] text-[14px]" to="#">View All<i
+                              <Link className="text-cyan font-[500] text-[14px]" to={`${import.meta.env.BASE_URL}commissions`}>View All<i
                                 className="ti ti-arrow-narrow-right ms-2 font-semibold inline-block"></i></Link>
                             </div>
 
@@ -144,7 +149,7 @@ const Crm = () => {
                           </div>
                           <div className="flex items-center justify-between !mt-1">
                             <div>
-                              <Link className="text-purple text-[0.813rem]" to="#">View All<i
+                              <Link className="text-purple text-[0.813rem]" to={`${import.meta.env.BASE_URL}admins`}>View All<i
                                 className="ti ti-arrow-narrow-right ms-2 font-semibold inline-block"></i></Link>
                             </div>
                             {/* <div className="text-end">
@@ -179,7 +184,7 @@ const Crm = () => {
                           </div>
                           <div className="flex items-center justify-between mt-1">
                             <div>
-                              <Link className="text-secondary text-[0.813rem]" to="#">View All<i
+                              <Link className="text-secondary text-[0.813rem]" to={`${import.meta.env.BASE_URL}agents`}>View All<i
                                 className="ti ti-arrow-narrow-right ms-2 font-semibold inline-block"></i></Link>
                             </div>
                             {/* <div className="text-end">
@@ -214,7 +219,7 @@ const Crm = () => {
                           </div>
                           <div className="flex items-center justify-between mt-1">
                             <div>
-                              <Link className="text-success text-[0.813rem]" to="#">View All<i
+                              <Link className="text-success text-[0.813rem]" to={`${import.meta.env.BASE_URL}support-tickets`}>View All<i
                                 className="ti ti-arrow-narrow-right ms-2 font-semibold inline-block"></i></Link>
                             </div>
                             {/* <div className="text-end">
@@ -249,7 +254,7 @@ const Crm = () => {
                           </div>
                           <div className="flex items-center justify-between mt-1">
                             <div>
-                              <Link className="text-warning text-[0.813rem]" to="#">View All<i
+                              <Link className="text-warning text-[0.813rem]" to={`${import.meta.env.BASE_URL}transaction`}>View All<i
                                 className="ti ti-arrow-narrow-right ms-2 font-semibold inline-block"></i></Link>
                             </div>
 
@@ -280,11 +285,11 @@ const Crm = () => {
                       <i className="fe fe-more-vertical text-[0.8rem]"></i>
                     </Link>
                     <ul className="hs-dropdown-menu ti-dropdown-menu hidden" role="menu">
-                      <li onClick={() => updateData("day")} className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
+                      <li onClick={() => updateData("day")} className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block cursor-pointer"
                       >Today</li>
-                      <li onClick={() => updateData("week")} className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
+                      <li onClick={() => updateData("week")} className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block cursor-pointer"
                       >This Week</li>
-                      <li onClick={() => updateData("month")} className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block"
+                      <li onClick={() => updateData("month")} className="ti-dropdown-item !py-2 !px-[0.9375rem] !text-[0.8125rem] !font-medium block cursor-pointer"
                       >This Month</li>
                     </ul>
                   </div>
@@ -293,7 +298,7 @@ const Crm = () => {
                   <div className="leads-source-chart flex items-center justify-center">
                     <Sourcedata />
                     <div className="lead-source-value ">
-                      <span className="block text-[0.875rem] ">Total</span>
+                      <span className="block text-[0.875rem] ">Total Payment</span>
                       <span className="block text-[1.5625rem] font-bold">{Data}</span>
                     </div>
                   </div>

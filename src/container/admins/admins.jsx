@@ -154,13 +154,13 @@ const Admins = () => {
                     </div>
                 </div>
             </div>
-            <div className="hs-overlay hidden ti-offcanvas ti-offcanvas-right !max-w-[25rem] !border-0" tabIndex={-1} id="hs-overlay-contacts" aria-labelledby="offcanvasExample">
+            {/* <div className="hs-overlay hidden ti-offcanvas ti-offcanvas-right !max-w-[25rem] !border-0" tabIndex={-1} id="hs-overlay-contacts" aria-labelledby="offcanvasExample">
                 <div className="ti-offcanvas-body !p-0">
                     <div className="sm:flex items-start p-6 border-b border-dashed border-defaultborder dark:border-defaultborder/10 main-profile-cover">
                         <div>
-                            {/* <span className="avatar avatar-xxl avatar-rounded me-3 bg-light/10 p-2">
+                            <span className="avatar avatar-xxl avatar-rounded me-3 bg-light/10 p-2">
                                 <img src={logo12} alt="" />
-                            </span> */}
+                            </span>
                         </div>
                         <div className="flex-fill main-profile-info w-full">
                             <div className="flex items-center justify-between">
@@ -266,15 +266,15 @@ const Admins = () => {
                         </div>
                         <div className="flex items-center gap-2">
                             <div className="leading-none">
-                                {/* <span className="avatar avatar-rounded avatar-sm">
+                                <span className="avatar avatar-rounded avatar-sm">
                                     <img src={face2} alt="img" />
-                                </span> */}
+                                </span>
                             </div>
                             <div className="font-semibold">Lisa Convay</div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <div id="todo-compose" className="hs-overlay hidden ti-modal">
                 <div className="hs-overlay-open:mt-7 ti-modal-box mt-0 ease-out">
                     <div className="ti-modal-content">

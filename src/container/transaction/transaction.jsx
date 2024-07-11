@@ -32,7 +32,7 @@ const Transaction = () => {
         <Fragment>
             <Pageheader currentpage="Transactions" activepage="Pages" mainpage="Transactions" />
             <div className="grid grid-cols-12 gap-6">
-                <div className="xl:col-span-9 col-span-12">
+                <div className="xl:col-span-12 col-span-12">
                     <div className="box custom-box">
                         <div className="box-header justify-between">
                             <div className="box-title">
@@ -154,7 +154,7 @@ const Transaction = () => {
                         </div>
                     </div>
                 </div>
-                <div className="xl:col-span-3 col-span-12">
+                {/* <div className="xl:col-span-3 col-span-12">
                     <div className="box custom-box">
                         <div className="box custom-box">
                             <div className="box-body !p-0">
@@ -261,7 +261,7 @@ const Transaction = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </Fragment>
     );

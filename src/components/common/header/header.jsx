@@ -10,7 +10,7 @@ import toggledark from "../../../assets/images/brand-logos/toggle-white.png";
 import desktopwhite from "../../../assets/images/brand-logos/desktop-white.png";
 import togglewhite from "../../../assets/images/brand-logos/toggle-white.png";
 import SimpleBar from 'simplebar-react';
-
+import { useNavigate } from "react-router-dom";
 
 
 const Header = ({ local_varaiable, ThemeChanger }) => {
@@ -244,6 +244,13 @@ const Header = ({ local_varaiable, ThemeChanger }) => {
     }
 
   };
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    const state = { message: 'You have been logged out.' };
+    localStorage.removeItem("token");
+    navigate("/", { replace: true, state});
+  };
   return (
     <Fragment>
       <header className="app-header">
@@ -386,8 +393,8 @@ const Header = ({ local_varaiable, ThemeChanger }) => {
                     <li><Link className="w-full ti-dropdown-item !text-[0.8125rem] !gap-x-0 !p-[0.65rem] !inline-flex" to="#"><i
                       className="ti ti-adjustments-horizontal text-[1.125rem] me-2 opacity-[0.7]"></i>Settings</Link></li>
 
-                    <li><Link className="w-full ti-dropdown-item !text-[0.8125rem] !p-[0.65rem] !gap-x-0 !inline-flex" to="#"><i
-                      className="ti ti-logout text-[1.125rem] me-2 opacity-[0.7]"></i>Log Out</Link></li>
+                    <li onClick={handleLogout} className="w-full ti-dropdown-item !text-[0.8125rem] !p-[0.65rem] !gap-x-0 !inline-flex cursor-pointer"> <i
+                      className="ti ti-logout text-[1.125rem] me-2 opacity-[0.7]"></i>Log Out </li>
                   </ul>
                 </div>
               </div>
