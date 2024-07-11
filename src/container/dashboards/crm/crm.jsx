@@ -9,7 +9,7 @@ const Crm = () => {
   // for User search function
   const [Data, setData] = useState(null);
 
-const formatCurrency = (value) => `₦${value?.toLocaleString()}`;
+const formatCurrency = (value) => `₦${(value ?? 0).toLocaleString()}`;
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["get-dashboard"],
