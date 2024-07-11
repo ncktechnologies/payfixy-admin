@@ -48,8 +48,7 @@ const formatCurrency = (value) => `₦${value?.toLocaleString()}`;
     <Fragment>
       <div className="md:flex block items-center justify-between my-[1.5rem] page-header-breadcrumb">
         <div>
-          <p className="font-semibold text-[1.125rem] text-defaulttextcolor dark:text-defaulttextcolor/70 !mb-0 ">Welcome back, Json Taylor !</p>
-          <p className="font-normal text-[#8c9097] dark:text-white/50 text-[0.813rem]">Track your sales activities here.</p>
+          <p className="font-semibold text-[1.125rem] text-defaulttextcolor dark:text-defaulttextcolor/70 !mb-0 ">Welcome !</p>
         </div>
         <div className="btn-list md:mt-0 mt-2">
           {/* <button type="button"
