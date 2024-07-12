@@ -1,16 +1,17 @@
 import { Fragment, useState } from 'react';
 import Pageheader from '../../components/common/pageheader/pageheader';
 import { Link } from 'react-router-dom';
-import { TransactionsStatistics } from './transactiondata';
 import CountUp from 'react-countup';
 import { useQuery } from "@tanstack/react-query";
 import { TransactionService } from '../../services/transaction.service';
+import { Badge } from '../../components/common/badge/badge';
 
 
 
 
 const Transaction = () => {
     const [manageInvoiceData, setManageInvoiceData] = useState([]);
+    const formatCurrency = (value) => `₦${(value ?? 0).toLocaleString()}`;
     const handleDelete = (idToRemove) => {
         const updatedInvoiceData = manageInvoiceData.filter((item) => item.id !== idToRemove);
         setManageInvoiceData(updatedInvoiceData);
@@ -100,33 +101,28 @@ const Transaction = () => {
                                                 </td>
                                                 
                                                 <td>
-                                                    <span>₦{idx.commission_earned}</span>
+                                                    <span>{formatCurrency(idx.commission_earned)}</span>
                                                 </td>
                                                 <td>
-                                                    <span className={`badge bg-${idx.color2}/10 text-${idx.color2}`}>{idx.status}</span>
+                                                    <Badge status={idx.status}>
+                                                    <span className={`badge`}>{idx.status}</span>
+                                                    </Badge>
                                                 </td>
                                                 <td>
                                                     <div className='space-x-2 rtl:space-x-reverse'>
                                                         <div className="hs-tooltip ti-main-tooltip">
+                                                        <Link to={`${import.meta.env.BASE_URL}transaction/${idx.id}`}>
                                                             <button type="button" className="hs-tooltip-toggle ti-btn ti-btn-primary ti-btn-sm">
-                                                                <span><i className="ri-download-2-line"></i></span>
+                                                                <span><i className="ri-eye-line"></i></span>
                                                                 <span
                                                                     className="hs-tooltip-content  ti-main-tooltip-content py-1 px-2 !bg-black !text-xs !font-medium !text-white shadow-sm "
                                                                     role="tooltip">
-                                                                    Download
+                                                                    View
                                                                 </span>
                                                             </button>
+                                                        </Link>
                                                         </div>
-                                                        <div className="hs-tooltip ti-main-tooltip">
-                                                            <button type="button" className="hs-tooltip-toggle ti-btn ti-btn-danger ms-1 ti-btn-sm transaction-delete-btn" onClick={() => handleDelete(idx.id)}>
-                                                                <span><i className="ri-delete-bin-5-line"></i></span>
-                                                                <span
-                                                                    className="hs-tooltip-content  ti-main-tooltip-content py-1 px-2 !bg-black !text-xs !font-medium !text-white shadow-sm "
-                                                                    role="tooltip">
-                                                                    Delete
-                                                                </span>
-                                                            </button>
-                                                        </div>
+                                                        
                                                     </div>
                                                 </td>
                                             </tr>

@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import Pageheader from '../../components/common/pageheader/pageheader';
 import { useQuery } from "@tanstack/react-query";
 import { AgentService } from "../../services/agents.service";
+import { Badge } from '../../components/common/badge/badge';
+import { ToggleActive } from './toggleactive';
 
 
 
 
 
 const Agents = () => {
-    
+
     const [AgentsData, setAgentsData] = useState([]);
 
     const { data, isLoading, error } = useQuery({
@@ -29,7 +31,7 @@ const Agents = () => {
         const updatedInvoiceData = AgentsData.filter((item) => item.id !== idToRemove);
         setAgentsData(updatedInvoiceData);
     };
-    
+
     return (
         <Fragment>
             <Pageheader currentpage="Agents" activepage="Pages" mainpage="Agents" />
@@ -44,7 +46,7 @@ const Agents = () => {
                                 <Link to="#" className="hs-dropdown-toggle ti-btn ti-btn-primary-full !py-1 !px-2 !text-[0.75rem]" data-hs-overlay="#todo-compose">
                                     <i className="ri-add-line font-semibold align-middle"></i>Add Agents
                                 </Link>
-                                
+
                             </div>
                         </div>
                         <div className="box-body !p-0">
@@ -52,30 +54,28 @@ const Agents = () => {
                                 <table className="table whitespace-nowrap min-w-full">
                                     <thead>
                                         <tr>
-                                            <th scope="col">
-                                            </th>
+                                            
                                             <th scope="col" className="text-start">Agent Name</th>
                                             <th scope="col" className="text-start">Email</th>
                                             <th scope="col" className="text-start">Phone</th>
                                             <th scope="col" className="text-start">Status</th>
                                             {/* <th scope="col" className="text-start">Verification</th> */}
-                                            <th scope="col" className="text-start">Actions</th>
+                                            <th scope="col" className="text-start ">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {data.map((dats) => (
 
                                             <tr className="border border-defaultborder crm-contact" key={dats.id}>
-                                                <td>
-                                                </td>
+                                               
 
                                                 <td>
                                                     <div className='flex items-center gap-x-2'>
-                                                    <div className="leading-none">
-                                                        <span className="avatar avatar-sm p-1 bg-light avatar-rounded">
-                                                            <img src={dats.profile_photo} alt="" />
-                                                        </span>
-                                                    </div>
+                                                        <div className="leading-none">
+                                                            <span className="avatar avatar-sm p-1 bg-light avatar-rounded">
+                                                                <img src={dats.profile_photo} alt="" />
+                                                            </span>
+                                                        </div>
                                                         <span className="block mb-1">{dats.firstname}</span>
                                                         <span className="block mb-1">{dats.lastname}</span>
                                                     </div>
@@ -90,21 +90,26 @@ const Agents = () => {
                                                         <span className="block"><i className="ri-phone-line me-2 align-middle text-[.875rem] text-[#8c9097] dark:text-white/50 inline-flex"></i>{dats.phone_number}</span>
                                                     </div>
                                                 </td>
-                                                
+
                                                 <td>
-                                                    <div className="flex items-center flex-wrap gap-1">
-                                                        <span className={`badge `}>{dats.status}</span>
-                                                    </div>
+                                                    <Badge status={dats.status}>
+                                                        <div className="flex items-center flex-wrap gap-1">
+                                                            <span className={`badge `}>{dats.status}</span>
+                                                        </div>
+                                                    </Badge>
                                                 </td>
 
                                                 {/* <td>
                                                     {idx.score}
                                                 </td> */}
                                                 <td>
-                                                    <div className='space-x-2 rtl:space-x-reverse'>
-                                                        <button aria-label="button" type="button" className="ti-btn ti-btn-sm ti-btn-warning" data-hs-overlay="#hs-overlay-contacts"><i className="ri-eye-line"></i></button>
-                                                        <button aria-label="button" type="button" className="ti-btn ti-btn-sm ti-btn-info"><i className="ri-pencil-line"></i></button>
-                                                        <button aria-label="button" type="button" className="ti-btn ti-btn-sm ti-btn-danger contact-delete" onClick={() => handleDelete(idx.id)}><i className="ri-delete-bin-line"></i></button>
+                                                    <div className='space-x-2 flex items-center'>
+                                                        <Link to={`${import.meta.env.BASE_URL}agents/${dats.id}`}>
+                                                            <button aria-label="button" type="button" className="ti-btn !py-1 !px-10 !text-[0.75rem] ti-btn-sm ti-btn-success-full" data-hs-overlay="#hs-overlay-contacts">
+                                                                View
+                                                                </button>
+                                                        </Link>
+                                                        <ToggleActive adminId={dats.id} isActive={dats.status}/>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -141,8 +146,8 @@ const Agents = () => {
                     </div>
                 </div>
             </div>
-            
-            
+
+
         </Fragment>
     );
 }

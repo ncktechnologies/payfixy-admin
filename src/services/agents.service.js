@@ -9,6 +9,34 @@ class Agents {
           throw new Error(error);
         }
     }
+    async getOneAgent(agentId) {
+      try {
+        const response = await Axios.get(`/admin/agents/${agentId}`);
+        // console.log(response)
+        return response;
+      } catch (error) {
+        throw new Error(error);
+      }   
+  }
+  async suspendAgentToggle(agentId, isActive) {
+    const payload = { agent_id: agentId };
+    try{
+        const response = await Axios.post(`/admin/toggle-agent-status`, payload);
+        await Swal.fire({
+            title: 'Success',
+            text:  'Agent suspended successfully',
+            icon: 'success',
+            timer: 1000,
+            showCloseButton: true,
+            confirmButtonColor: '#A51D21',
+            confirmButtonText: 'OK',
+        })
+        console.log(payload);
+        return response;
+    }catch (error){
+        throw new Error(error);
+    }
+}
     async getAllSupportTickets() {
       try {
         const response = await Axios.get(`/admin/support-tickets`);
