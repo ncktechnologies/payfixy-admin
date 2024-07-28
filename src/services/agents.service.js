@@ -24,14 +24,14 @@ class Agents {
         const response = await Axios.post(`/admin/toggle-agent-status`, payload);
         await Swal.fire({
             title: 'Success',
-            text:  'Agent suspended successfully',
+            text:  response.msg,
             icon: 'success',
             timer: 1000,
             showCloseButton: true,
             confirmButtonColor: '#A51D21',
             confirmButtonText: 'OK',
         })
-        console.log(payload);
+        console.log(response.msg);
         return response;
     }catch (error){
         throw new Error(error);

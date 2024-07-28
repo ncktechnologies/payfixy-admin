@@ -8,7 +8,7 @@ const Axios = axios.create({
     Accept: "application/json",
     Authorization: `Bearer ${token}`,
   },
-  baseURL: "http://payfixy.protechadvance.com",
+  baseURL:  import.meta.env.VITE_APP_BASE_URL,
 });
 
 if (token) {

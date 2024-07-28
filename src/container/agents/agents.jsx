@@ -109,7 +109,7 @@ const Agents = () => {
                                                                 View
                                                                 </button>
                                                         </Link>
-                                                        <ToggleActive adminId={dats.id} isActive={dats.status}/>
+                                                        <ToggleActive agentId={dats?.id} isActive={dats.status}/>
                                                     </div>
                                                 </td>
                                             </tr>

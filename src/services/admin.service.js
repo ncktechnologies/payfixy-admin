@@ -55,14 +55,13 @@ class Admin {
             const response = await Axios.put(`/admin/suspend`, payload);
             await Swal.fire({
                 title: 'Success',
-                text:  'Admin deactivated successfully',
+                text:  response.msg,
                 icon: 'success',
                 timer: 1000,
                 showCloseButton: true,
                 confirmButtonColor: '#A51D21',
                 confirmButtonText: 'OK',
             })
-            console.log(payload);
             return response;
         }catch (error){
             throw new Error(error);

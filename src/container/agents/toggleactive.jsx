@@ -6,7 +6,7 @@ export const ToggleActive = ({ agentId, isActive: initialActiveState}) => {
   const [isActive, setActive] = useState(initialActiveState);
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: async () => await AgentService.suspendAgentToggle(adminId, isActive),
+    mutationFn: async () => await AgentService.suspendAgentToggle(agentId, isActive),
     onSuccess: () => {
       setActive((prevIsActive) => !prevIsActive);
     },

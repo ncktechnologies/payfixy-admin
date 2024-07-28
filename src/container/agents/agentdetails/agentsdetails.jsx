@@ -39,7 +39,7 @@ const AgentDetails = () => {
                     <div className="btn-list flex sm:justify-end ">
                     <div className="sm:flex gap-3 btn-list">
                         <p className="font-bold pt-1 text-lg">Suspend Agent</p>
-                        <ToggleActive agentId={id} />
+                        <ToggleActive agentId={data?.id} />
                     </div>
                 </div>
 
@@ -78,12 +78,6 @@ const AgentDetails = () => {
                                             <td>: {formattedDob}</td>
                                         </tr>
 
-                                        <tr>
-                                            <td className="">
-                                                <span className="font-semibold">Age</span>
-                                            </td>
-                                            <td>: 35</td>
-                                        </tr>
                                         <tr>
                                             <td className="">
                                                 <span className="font-semibold">Mobile </span>
