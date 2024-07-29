@@ -80,6 +80,16 @@ export const MENUITEMS = [
         dirchange: false,
         active: false,
       },
+      {
+        
+        title: "Verification",
+        path: `${import.meta.env.BASE_URL}verifications`,
+        icon: (<i className="ti ti-wallet side-menu__icon"></i>),
+        type: "link",
+        selected: false, 
+        dirchange: false,
+        active: false,
+      },
 
   
  

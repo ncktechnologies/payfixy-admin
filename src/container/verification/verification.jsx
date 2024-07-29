@@ -1,102 +1,66 @@
-import React, { Fragment, useCallback, useRef, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Pageheader from '../../components/common/pageheader/pageheader';
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { AgentService } from "../../services/agents.service";
+import { useQuery } from "@tanstack/react-query";
 import { Badge } from '../../components/common/badge/badge';
-import { ToggleActive } from './toggleactive';
+import { VerificationService } from '../../services/verification.service';
+import { format } from 'date-fns';
 
 
-
-
-
-const Agents = () => {
-
-    const [AgentsData, setAgentsData] = useState([]);
-    const [verifyAgent, setVerifyAgent] = useState({
-        agent_id: "",
-    });
+const Verifications = () => {
+    const [verificationsData, setVerificationsData] = useState([]);
 
     const { data, isLoading, error } = useQuery({
-        queryKey: ["get-agents"],
-        queryFn: () => AgentService.getAllAgents(),
+        queryKey: ["get-verifications"],
+        queryFn: () => VerificationService.getAllVerifications(),
         onSuccess: () => {
-            setAgentsData(data);
+            setVerificationsData(data);
         },
         onError: (error) => {
             console.error("Error fetching data:", error.response.data);
         }
     });
 
-    const { mutate, isPending } = useMutation({
-        mutationFn: async (data) => await AgentService.verifyAgent(data),
-        onSuccess: () => {
-            setActive((prevIsActive) => !prevIsActive);
-        },
-        onError: (error) => {
-            console.error("Error creating admin:", error);
-        },
-    });
-    const verify = useCallback((e) => {
-        e.preventDefault();
-        mutate(verifyAgent);
-      }, [verifyAgent, mutate]);
-    
-      const changeHandler = useCallback((e) => {
-        setVerifyAgent({ ...verifyAgent, [e.target.name]: e.target.value });
-      }, [verifyAgent]);
-      const toggleModal = () => {
-        setIsModalOpen(!isModalOpen);
-      };
     if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error loading data : {error.response}</div>;
-
-    const handleDelete = (idToRemove) => {
-        const updatedInvoiceData = AgentsData.filter((item) => item.id !== idToRemove);
-        setAgentsData(updatedInvoiceData);
-    };
+    if (error) return <div>Error loading data: {error.response}</div>;
 
     return (
         <Fragment>
-            <Pageheader currentpage="Agents" activepage="Pages" mainpage="Agents" />
+            <Pageheader currentpage="Verifications" activepage="Pages" mainpage="Verifications" />
             <div className="grid grid-cols-12 gap-6">
                 <div className="xl:col-span-12 col-span-12">
                     <div className="box custom-box">
                         <div className="box-header justify-between">
                             <div className="box-title">
-                                Agents <span className="badge bg-light text-defaulttextcolor rounded-full ms-1 text-[0.75rem] align-middle">{AgentsData.length + 1}</span>
+                                Verifications <span className="badge bg-light text-defaulttextcolor rounded-full ms-1 text-[0.75rem] align-middle">{verificationsData.length}</span>
                             </div>
-
                         </div>
                         <div className="box-body !p-0">
                             <div className="table-responsive">
                                 <table className="table whitespace-nowrap min-w-full">
                                     <thead>
                                         <tr>
-
-                                            <th scope="col" className="text-start">Agent Name</th>
+                                            <th scope="col" className="text-start">Full Name</th>
                                             <th scope="col" className="text-start">Email</th>
                                             <th scope="col" className="text-start">Phone</th>
                                             <th scope="col" className="text-start">Status</th>
-                                            {/* <th scope="col" className="text-start">Verification</th> */}
-                                            <th scope="col" className="text-start ">Actions</th>
+                                            <th scope="col" className="text-start">Status Status</th>
+                                            <th scope="col" className="text-start">Verification Type</th>
+                                            <th scope="col" className="text-start">Updated At</th>
+                                            <th scope="col" className="text-start">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {data.map((dats) => (
-
                                             <tr className="border border-defaultborder crm-contact" key={dats.id}>
-
-
                                                 <td>
                                                     <div className='flex items-center gap-x-2'>
                                                         <div className="leading-none">
                                                             <span className="avatar avatar-sm p-1 bg-light avatar-rounded">
-                                                                <img src={dats.profile_photo} alt="" />
+                                                                <img src={dats.photo} alt="" />
                                                             </span>
                                                         </div>
-                                                        <span className="block mb-1">{dats.firstname}</span>
-                                                        <span className="block mb-1">{dats.lastname}</span>
+                                                        <span className="block mb-1">{dats.firstname} {dats.lastname}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -109,33 +73,43 @@ const Agents = () => {
                                                         <span className="block"><i className="ri-phone-line me-2 align-middle text-[.875rem] text-[#8c9097] dark:text-white/50 inline-flex"></i>{dats.phone_number}</span>
                                                     </div>
                                                 </td>
-
                                                 <td>
                                                     <Badge status={dats.status}>
                                                         <div className="flex items-center flex-wrap gap-1">
-                                                            <span className={`badge `}>{dats.status}</span>
+                                                            <span className={`badge`}>{dats.status}</span>
                                                         </div>
                                                     </Badge>
                                                 </td>
-
-                                                {/* <td>
-                                                    {idx.score}
-                                                </td> */}
                                                 <td>
-                                                    <div className='space-x-2 flex items-center'>
-                                                        <Link to={`${import.meta.env.BASE_URL}agents/${dats.id}`}>
-                                                            <button aria-label="button" type="button" className="ti-btn !py-1 !px-10 !text-[0.75rem] ti-btn-sm ti-btn-success-full" data-hs-overlay="#hs-overlay-contacts">
-                                                                View
-                                                            </button>
-                                                        </Link>
-                                                        <div className="flex flex-wrap gap-2">
-                                                            <Link to="#" className="hs-dropdown-toggle ti-btn ti-btn-primary-full !py-1 !px-2 !text-[0.75rem]" data-hs-overlay="#todo-compose">
-                                                                <i className="ri-add-line font-semibold align-middle"></i>Verify Agents
-                                                            </Link>
+                                                    <Badge status={dats.status}>
+                                                        <div className="flex items-center flex-wrap gap-1">
+                                                            <span className={`badge`}>{dats.status_status}</span>
+                                                        </div>
+                                                    </Badge>
+                                                </td>
+                                                <td>
+                                                    <div className="flex items-center gap-2">
 
+                                                        <div className="font-semibold">{dats.verification_type}</div>
+                                                    </div>
+                                                </td>
+                                                <td>{format(new Date(dats.created_at), 'dd MMMM yyyy')}</td>
+
+                                                <td>
+                                                    <div className='space-x-2 rtl:space-x-reverse'>
+                                                        <div className="hs-tooltip ti-main-tooltip">
+                                                            <Link to={`${import.meta.env.BASE_URL}verifications/${dats.id}`}>
+                                                                <button type="button" className="hs-tooltip-toggle ti-btn ti-btn-primary ti-btn-sm">
+                                                                    <span><i className="ri-eye-line"></i></span>
+                                                                    <span
+                                                                        className="hs-tooltip-content  ti-main-tooltip-content py-1 px-2 !bg-black !text-xs !font-medium !text-white shadow-sm "
+                                                                        role="tooltip">
+                                                                        View
+                                                                    </span>
+                                                                </button>
+                                                            </Link>
                                                         </div>
 
-                                                        <ToggleActive agentId={dats?.id} isActive={dats.status} />
                                                     </div>
                                                 </td>
                                             </tr>
@@ -172,46 +146,8 @@ const Agents = () => {
                     </div>
                 </div>
             </div>
-{/* modal */}
-<div id="todo-compose" className="hs-overlay hidden ti-modal">
-          <div className="hs-overlay-open:mt-7 ti-modal-box !mt-32 ease-out">
-            <div className="ti-modal-content">
-              <div className="ti-modal-header">
-                <h6 className="modal-title text-[1rem] font-semibold text-defaulttextcolor" id="mail-ComposeLabel">Verify Agent</h6>
-                <button  type="button" className="hs-dropdown-toggle !text-[1rem] !font-semibold !text-defaulttextcolor" data-hs-overlay="#todo-compose" >
-                  <span className="sr-only">Close</span>
-                  <i className="ri-close-line"></i>
-                </button>
-              </div>
-              <div className="ti-modal-body px-4">
-                <div className="grid grid-cols-12 gap-4">
-                  <div className="col-span-12">
-                    <label htmlFor="company-name" className="form-label">Agent ID</label>
-                    <input type="text" className="form-control" id="aent_id" name="agent_id" placeholder="Agent Id" value={verifyAgent.agent_id} onChange={changeHandler} />
-                  </div>
-                  
-                </div>
-              </div>
-              <div className="ti-modal-footer">
-                <button type="button"
-                  className="hs-dropdown-toggle ti-btn ti-btn-light align-middle"
-                  data-hs-overlay="#todo-compose">
-                  Cancel
-                </button>
-                {!isPending &&
-                <button  onClick={verify} type="button" className="ti-btn bg-primary text-white !font-medium">Verify Agent</button>
-                }
-                {isPending &&
-                <button disabled type="button" className="ti-btn bg-secondary text-white !font-medium">Verify Agent</button>
-                }
-                </div>
-            </div>
-          </div>
-        </div>
-
         </Fragment>
     );
 }
 
-export default Agents;
-
+export default Verifications;
