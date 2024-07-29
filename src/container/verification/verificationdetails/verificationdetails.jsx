@@ -41,20 +41,25 @@ const VerificationDetails = () => {
                             {verificationData && (
                                 <>
                                     <div className="p-4">
-                                        <div className='box custom-box  mb-10 '>
-                                        <div className="flex items-center py-5 ">
-                                            <div className="leading-none">
-                                                <span className="avatar avatar-lg p-1 bg-light avatar-rounded">
-                                                    <img src={verificationData.photo} alt="" />
-                                                </span>
+                                        <div className=' mb-10 flex justify-between'>
+                                            <div className="flex items-center py-5 ">
+                                                <div className="leading-none">
+                                                    <span className="avatar avatar-lg p-1 bg-light avatar-rounded">
+                                                        <img src={`data:image/jpeg;base64,${verificationData.photo}`}
+                                                            alt=""
+                                                            
+                                                        />
+                                                    </span>
+                                                </div>
+
+                                                <div className="ml-4">
+                                                    <h2 className="text-xl font-semibold">{verificationData.firstname} {verificationData.lastname}</h2>
+                                                    <p className="text-gray-500">{verificationData.title} - {verificationData.gender}</p>
+                                                </div>
                                             </div>
-                                            <div className="ml-4">
-                                                <h2 className="text-xl font-semibold">{verificationData.firstname} {verificationData.lastname}</h2>
-                                                <p className="text-gray-500">{verificationData.title} - {verificationData.gender}</p>
-                                            </div>
+                                            
                                         </div>
-                                        </div>
-                                        
+
                                         <div className="grid grid-cols-12 gap-6">
                                             <div className="lg:col-span-6 col-span-12">
                                                 <div className="box custom-box border">
@@ -67,6 +72,19 @@ const VerificationDetails = () => {
                                                     </div>
                                                     <div className="box-body !p-2 overflow-x-auto">
                                                         <div className=" grid grid-cols-12 ">
+                                                            <div className='px-2 border-b py-3 col-span-12'>
+                                                                {verificationData.camera_photo ? (
+                                                                    <img
+                                                                        src={`data:image/jpeg;base64,${verificationData.photo}`}
+                                                                        alt="Camera"
+                                                                        className="h-20 w-20 rounded-lg object-cover"
+                                                                    />
+                                                                ) : (
+                                                                    <p>No photo available</p>
+                                                                )}
+                                                                <h6 className="gray-600 text-lg font-semibold">Photo</h6>
+
+                                                            </div>
                                                             <div className=" px-2 border-b py-3 col-span-6">
                                                                 <div>
                                                                     <h6 className=" gray-600  text-[12px]">Email</h6>
@@ -147,6 +165,20 @@ const VerificationDetails = () => {
                                                     </div>
                                                     <div className="box-body border  !p-2 overflow-x-auto">
                                                         <div className=" grid grid-cols-12 ">
+                                                            <div className='px-2 border-b py-3 col-span-12'>
+                                                                {verificationData.camera_photo ? (
+                                                                    <img
+                                                                        src={`data:image/jpeg;base64,${verificationData.camera_photo}`}
+                                                                        alt="Camera"
+                                                                        className="h-20 w-20 rounded-lg"
+                                                                    />
+                                                                ) : (
+                                                                    <p>No photo available</p>
+                                                                )}
+                                                                <h6 className="gray-600 text-lg font-semibold">Camera Photo</h6>
+
+                                                            </div>
+
                                                             <div className=" px-2 border-b py-3 col-span-6">
                                                                 <div>
                                                                     <h6 className=" gray-600  text-[12px]">BVN</h6>
@@ -164,7 +196,7 @@ const VerificationDetails = () => {
                                                                     <h6 className=" gray-600  text-[12px]">Status</h6>
                                                                     <Badge status={verificationData.status}>
                                                                         {verificationData.status}
-                                                                    </Badge> 
+                                                                    </Badge>
                                                                 </div>
                                                             </div>
                                                             <div className=" px-2 border-b py-3 col-span-6 ">
@@ -172,7 +204,7 @@ const VerificationDetails = () => {
                                                                     <h6 className=" gray-600  text-[12px]">Status Status</h6>
                                                                     <Badge status={verificationData.status}>
                                                                         {verificationData.status}
-                                                                    </Badge> 
+                                                                    </Badge>
                                                                 </div>
                                                             </div>
                                                             <div className=" px-2 border-b py-3 col-span-6 ">
@@ -180,7 +212,7 @@ const VerificationDetails = () => {
                                                                     <h6 className=" gray-600  text-[12px]">Status State</h6>
                                                                     <Badge status={verificationData.status}>
                                                                         {verificationData.status}
-                                                                    </Badge> 
+                                                                    </Badge>
                                                                 </div>
                                                             </div>
                                                             <div className=" px-2 border-b py-3 col-span-6 ">
@@ -223,7 +255,7 @@ const VerificationDetails = () => {
                                                             <div className=" px-2 border-b py-3 col-span-6 ">
                                                                 <div>
                                                                     <h6 className=" gray-600  text-[12px]">BVN Lastname Match</h6>
-                                                                    <p className="font-[500] text-[14px] pt-1">{verificationData.bvn_check_lastname_match? 'Yes' : 'No'}</p>
+                                                                    <p className="font-[500] text-[14px] pt-1">{verificationData.bvn_check_lastname_match ? 'Yes' : 'No'}</p>
 
                                                                 </div>
                                                             </div>

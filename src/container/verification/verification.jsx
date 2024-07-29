@@ -57,7 +57,9 @@ const Verifications = () => {
                                                     <div className='flex items-center gap-x-2'>
                                                         <div className="leading-none">
                                                             <span className="avatar avatar-sm p-1 bg-light avatar-rounded">
-                                                                <img src={dats.photo} alt="" />
+                                                                <img                                                                         
+                                                                src={`data:image/jpeg;base64,${dats.photo}`}
+                                                                />
                                                             </span>
                                                         </div>
                                                         <span className="block mb-1">{dats.firstname} {dats.lastname}</span>
